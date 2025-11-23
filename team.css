@@ -1,0 +1,76 @@
+  body {
+    margin: 0;
+    background-color: #0d0d0d;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  h1 {
+    color: #DC56C5;
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .team {
+    display: flex;
+    gap: 40px;
+  }
+
+  .member {
+    background-color: #151515;
+    border: 1px solid #DC56C5;
+    border-radius: 15px;
+    padding: 25px 40px;
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px #DC56C5;
+  }
+
+  .name {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .role {
+    font-size: 15px;
+    color: #aaa;
+  }
+
+  a.back {
+    margin-top: 50px;
+    color: #DC56C5;
+    text-decoration: none;
+    border: 1px solid #DC56C5;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+
+  a.back:hover {
+    background: #DC56C5;
+    color: #0d0d0d;
+  }
+
+  .desc {
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.35;
+}
+.photo {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
