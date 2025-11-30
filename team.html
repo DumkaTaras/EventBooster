@@ -1,49 +1,61 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Наша команда</title>
-    <link rel="stylesheet" href="./team.css">
+    <link rel="stylesheet" href="/team.css">
+    <script src="script.js"></script>
+    <title>Document</title>
 </head>
 
 <body>
+
 
     <h1>Наша команда</h1>
 
 
     <div class="team">
-        <div class="member">
-            <img src="/Images/photo_2025-11-16_09-57-50.jpg" alt="Фото Тараса" class="photo">
+        <div class="member"
+            onclick="openModal('Тарас','Frontend Developer','/Images/photo_2025-11-16_09-57-50.jpg','Тарас, 14 років. Навчаюся у 9 класі. Захоплююся програмуванням, також зацікавлений у мототехніці.')">
+            <img src="/Images/photo_2025-11-16_09-57-50.jpg" class="photo" />
             <div class="name">Тарас</div>
-            <div class="role"><b>Frontend Developer</b></div>
-            <div class="desc">Тарас, 14 років. Навчаюся у 9 класі. Захоплююся програмуванням уже 2 роки, також
-                зацікавлений у мототехніці.</div>
+            <div class="role">Frontend Developer</div>
         </div>
 
 
-        <div class="member">
-            <img src="/img/denys.jpg" alt="Фото Дениса" class="photo">
+        <div class="member"
+            onclick="openModal('Денис','Frontend Developer','/Images/photo_2025-11-29_12-35-58.jpg','Мене звати Денис мені 14 років я з Запоріжжя. У нашому проекті я робив header та адаптиви на телефон')">
+            <img src="/Images/photo_2025-11-29_12-35-58.jpg" class="photo" />
             <div class="name">Денис</div>
             <div class="role">Frontend Developer</div>
-            <div class="desc">Короткий опис про Дениса. Можна написати про досвід або сильні сторони.</div>
         </div>
 
 
-        <div class="member">
-            <img src="/Images/photo_2025-11-16_09-57-38.jpg" alt="Фото Богдана" class="photo">
+        <div class="member"
+            onclick="openModal('Богдан','Frontend Developer','/Images/photo_2025-11-16_09-57-38.jpg','Богдан, 14 років.Навчаюся у ліцеї в 9 класі. Вивчаю програмування, а також займаюся боксом. Робив footer та опис нашої команди!')">
+            <img src="/Images/photo_2025-11-16_09-57-38.jpg" class="photo" />
             <div class="name">Богдан</div>
-            <div class="role"><b>Frontend Developer</b></div>
-            <div class="desc">Мене звати Богдан, мені 14 років. Я навчаюся у 9 класі. Вивчаю програмування в GoIT, також
-                цікавлюся автомобілями.</div>
+            <div class="role">Frontend Developer</div>
         </div>
     </div>
 
 
-    <a href="index.html" class="back">⬅ На головну</a>
+    <div class="modal-bg" id="modalBg">
+        <div class="modal" id="modal">
+            <span class="close" onclick="closeModal()">✖</span>
+            <img id="modalPhoto" />
+            <h2 id="modalName"></h2>
+            <h4 id="modalRole"></h4>
+            <p id="modalDesc"></p>
+        </div>
+    </div>
+
+    <div class="exit">
+        <a href="index.html" class="back">⬅ На головну</a>
+    </div>
+
 
 </body>
-
 
 </html>

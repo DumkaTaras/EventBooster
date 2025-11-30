@@ -12,7 +12,7 @@ body {
 
 header {
   width: 100%;
-  background-image: url(./images/pic.png);
+  background-image: url(/images/pic.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -219,7 +219,8 @@ select option {
 }
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////// */
-.modal {
+.modal,
+.modal_buy_tickets {
   position: fixed;
   top: 0;
   left: 0;
@@ -237,13 +238,15 @@ select option {
 }
 
 /* When modal is active (add class .show in JS) */
-.modal.show {
+.modal.show,
+.modal_buy_tickets.show {
   opacity: 1;
   pointer-events: all;
 }
 
 /* Card */
-.modal-content {
+.modal-content,
+.modal-Content {
   background: #FFF2FD;
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 25px;
@@ -380,6 +383,58 @@ select option {
 
 .close-button:hover {
   opacity: 1;
+}
+
+.modal-Content h1 {
+  font-size: 34px;
+  margin-bottom: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #0E0E0E;
+  font-weight: 800;
+  padding: 20px;
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background: linear-gradient(90deg, #FF0080, #7928CA);
+
+}
+
+.modal-Content input {
+  width: 300px;
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  outline: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: initial;
+}
+
+.modal-Content input:hover {
+  box-shadow: 0 0 8px rgba(193, 38, 38, 0.4);
+}
+.pay_button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#Pay{
+  background-color: #4C00FE;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.modal-Content .close-button {
+  margin-top: -100px;
+  margin-bottom: 50px;
 }
 
 /* Opening animation */
@@ -608,6 +663,9 @@ select option {
         margin-right: 20px;
       }
 
+      .modal-Content input {
+        width: 200px;
+      }
       .more {
         width: 200px;
         height: 40px;
@@ -637,6 +695,11 @@ select option {
         margin-top: -10px;
       }
 
+      .modal-Content{
+          border-top-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+      }
+
       .footer-note {
         width: 250px;
         text-align: center;
@@ -650,15 +713,16 @@ select option {
         margin-bottom: 50px;
 
       }
+
       .modal-content h2 {
         width: 200px;
       }
 
-      .modal-content{
+      .modal-content {
         padding: 30px 0px 30px 0px;
       }
 
-      .more{
+      .more {
         width: 150px;
         font-size: 10px;
         margin-left: -50px;
@@ -689,5 +753,4 @@ footer {
 .footer-note a {
   color: #fefefe;
   text-decoration: none;
-
 }

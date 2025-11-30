@@ -17,22 +17,22 @@ postsPerPage = 16;
 let MAX_PAGE_BUTTONS = 63;
 async function adjustForScreenWidth() {
     try {
-           if (window.innerWidth < 600) {
-        MAX_PAGE_BUTTONS = 50;
-        postsPerPage = 20;
+        if (window.innerWidth < 600) {
+            MAX_PAGE_BUTTONS = 50;
+            postsPerPage = 20;
 
-        localStorage.setItem('postsPerPage', postsPerPage);
-        localStorage.setItem('MAX_PAGE_BUTTONS', MAX_PAGE_BUTTONS);
-    }
-    if (window.innerWidth <= 1000 && screen.width > 600) {
-        console.log("ernfi");
-        MAX_PAGE_BUTTONS = 48;
-        postsPerPage = 21;
-        localStorage.setItem('postsPerPage', postsPerPage);
-        localStorage.setItem('MAX_PAGE_BUTTONS', MAX_PAGE_BUTTONS);
-    }
-    localStorage.getItem('postsPerPage', postsPerPage);
-    localStorage.getItem('MAX_PAGE_BUTTONS', MAX_PAGE_BUTTONS);
+            localStorage.setItem('postsPerPage', postsPerPage);
+            localStorage.setItem('MAX_PAGE_BUTTONS', MAX_PAGE_BUTTONS);
+        }
+        if (window.innerWidth <= 1000 && screen.width > 600) {
+            console.log("ernfi");
+            MAX_PAGE_BUTTONS = 48;
+            postsPerPage = 21;
+            localStorage.setItem('postsPerPage', postsPerPage);
+            localStorage.setItem('MAX_PAGE_BUTTONS', MAX_PAGE_BUTTONS);
+        }
+        localStorage.getItem('postsPerPage', postsPerPage);
+        localStorage.getItem('MAX_PAGE_BUTTONS', MAX_PAGE_BUTTONS);
     } catch (e) {
         console.error('Error retrieving from localStorage', e);
     }
@@ -40,7 +40,7 @@ async function adjustForScreenWidth() {
 
 async function searchfilms(page = 1, search = '', country = '') {
     try {
-adjustForScreenWidth();
+        adjustForScreenWidth();
         const pageIndex = Math.max(0, page - 1);
 
         let url = `${KEY_API}&size=${postsPerPage}&page=${pageIndex}`;
@@ -147,9 +147,144 @@ function openModal(post, eventData) {
                 modal.classList.remove("show");
                 setTimeout(() => modal.remove(), 300);
             }
+
         });
+        getButtonsFromModal(modal);
     });
+
 }
+
+
+
+function getButtonsFromModal(modal) {
+    let buttons = modal.querySelectorAll('button');
+    let modal_Con = modal.querySelector('.modal-content');
+    buttons.forEach(button => {
+
+        let price;
+
+        if (button.classList == 'buy') {
+            console.log(button)
+            button.addEventListener('click', () => {
+                price = modal.querySelector('.prices').textContent
+                clickBuyButtons(price,modal)
+                modal.classList.remove("show");
+            });
+        }
+       else if (button.classList == 'buy-VIP') {
+                    button.addEventListener('click', () => {
+            price = modal.querySelector('.prices-VIP').textContent
+            clickBuyButtons(price,modal)
+            modal.classList.remove("show");
+                    });
+        }
+    })
+    console.log(buttons, modal.querySelector('.prices'));
+    return buttons;
+}
+
+function clickBuyButtons(price,modal) {
+    let modal_buy_tickets = document.createElement('div')
+    modal_buy_tickets.classList.add('modal_buy_tickets')
+
+    modal_buy_tickets.innerHTML = `
+    <div class = "modal-Content">
+    <h1>Payment</h1>
+    <span class="close-button">&times;</span>
+    <div class="price">
+    <p>PRICE
+    <br>
+    ~${price}~</p>
+    </div>
+    <div class = "info">
+    <h3 class="card_Code">Enter your card number</h3>
+    <input id="cardCode" type="text" placeholder="Enter info...">
+    <br>
+    <h3 class="card_Cvv2">Enter CVV2</h3>
+    <input id="card_Cvv2" type="text" placeholder="Enter info...">
+    <br>
+    <div class="pay_button">
+    <button id="Pay">Pay</button>
+    </div>
+    </div>
+    </div>
+    `
+    modal_buy_tickets.classList.add('show');
+    console.log(modal_buy_tickets)
+
+    document.body.append(modal_buy_tickets)
+
+        modal_buy_tickets.querySelector('.close-button').addEventListener('click',()=>{
+         modal_buy_tickets.classList.remove('show');   
+         setTimeout(() => document.body.removeChild(modal_buy_tickets), 300);
+         modal.classList.add('show')
+    })
+
+let endTransaction = false;
+
+let inp_Card;
+let inp_CVV2;
+let arrNums = '0123456789';
+document.addEventListener('input',()=>{
+    inp_Card = modal_buy_tickets.querySelector('#cardCode').value;
+    inp_CVV2 = modal_buy_tickets.querySelector('#card_Cvv2').value;
+
+    let bool = null;
+    let bool2 = null;
+    let leng = inp_Card.split('');
+    let leng2 = inp_CVV2.split('')
+
+    console.log(arrNums)
+    
+    for(let i = 0; i<leng.length; i++){
+        if(arrNums.includes(leng[i]))
+            bool=true
+        else
+            bool = false
+    }
+     for(let i = 0; i<leng2.length; i++){
+        if(arrNums.includes(leng2[i]))
+            bool2=true
+        else
+            bool2 = false
+    }
+    modal_buy_tickets.querySelector("#Pay").addEventListener('click',()=>{
+    if(Number(inp_Card)!==NaN && leng.length==16&&bool){
+        bool = true
+        if(leng2.length==3&&bool2){
+        console.log(leng,bool,leng2,bool2)
+        modal_buy_tickets.querySelector('.modal-Content').innerHTML = `<h1>Good!</h1>`
+
+        }
+    }
+    else{
+        modal_buy_tickets.querySelector('.modal-Content').innerHTML = `<h1 style ="color:red;">Error!</h1>`
+    }
+            
+    })
+
+    if(modal_buy_tickets.querySelector('.modal-Content').innerHTML !== ``){
+endTransaction = true;
+    }
+            modal_buy_tickets.addEventListener('click', e => {
+            if (e.target === modal_buy_tickets) {
+                document.body.removeChild(modal_buy_tickets);
+                setTimeout(() => modal.remove(), 300);
+            }
+
+        })
+
+})
+
+
+
+    function closeBuytickets() {
+    }
+    closeBuytickets()
+}
+
+
+
 
 function loadPage(i) {
     const searchText = searchingInput.value.toLowerCase().trim();
@@ -253,3 +388,4 @@ countrySelect.addEventListener('click', () => {
     let arrow = document.querySelector('.arrow');
     arrow.style.rotate = arrow.style.rotate === '180deg' ? '0deg' : '180deg';
 });
+
