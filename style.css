@@ -327,7 +327,13 @@ select option {
   color: #DC56C5;
   margin-bottom: 20px;
 }
-
+.price p{
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #12763c;
+  text-align: center;
+}
 .prices::before {
   content: "PRICES";
   display: block;
@@ -753,4 +759,5 @@ footer {
 .footer-note a {
   color: #fefefe;
   text-decoration: none;
+
 }
