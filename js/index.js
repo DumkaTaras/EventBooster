@@ -125,7 +125,7 @@ function openModal(post, eventData) {
                         <button class="buy-VIP">BUY TICKETS</button>
                     </div>
                 </div>
-                <button class="more">MORE FROM THIS AUTHOR</button>
+                <a href="https://www.ticketmaster.com/minnesota-timberwolves-tickets/artist/805971"><button class="more">MORE FROM THIS AUTHOR</button></a>
             </div>`;
 
         const imageDiv = document.createElement('div');
@@ -388,4 +388,5 @@ countrySelect.addEventListener('click', () => {
     let arrow = document.querySelector('.arrow');
     arrow.style.rotate = arrow.style.rotate === '180deg' ? '0deg' : '180deg';
 });
+
 
